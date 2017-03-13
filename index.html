@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<html lang="en" ng-app='app'>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body>
+
+    <!-- collects the item data-->
+
+    <table ng-controller='HomeController as homeCtrl'>
+
+        <td>
+            <label for="text">Text: </label>
+            <input ng-model="homeCtrl.todoName" type="text" name="text" value="">
+        </td>
+            <td>
+            <select ng-options="priority[0] for priority in homeCtrl.priorities" ng-model="homeCtrl.priority" name="select">
+              <option  value=""></option>
+            </select>
+        </td>
+        <!--  button to add to list-->
+        <td>
+            <button ng-click="homeCtrl.addTodo()" type="submit" name="button">Add to List</button>
+        </td>
+
+        <td class="col-md-8">
+            <button type="button" class="btn btn-danger" ng-click="homeCtrl.byHigh()">Order by highest priority</button>
+            <button type="button" class="btn btn-success" ng-click="homeCtrl.byLow()">Order by lowest priority</button>
+            <button type="button" class="btn btn-info" ng-click="homeCtrl.byAlphabet()">Order alphabetically</button>
+          </td>
+
+         <td class="list-group">
+            <li ng-repeat="todos in homeCtrl.todos | orderBy: homeCtrl.order" class={{todo[2]}}>{{todos[0]}}</li>
+         </td>
+    </table>
+    <!-- scripts go here -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
+    <script src="app/index.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</body>
+</html>
